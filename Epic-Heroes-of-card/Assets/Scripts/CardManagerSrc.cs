@@ -28,11 +28,11 @@ public class CardManagerSrc : MonoBehaviour
 {
     private void Awake()
     {
-        CardManager.AllCards.Add(new Card("granata", "Assets/Resources/Sprites/granata", 5, 3));
-        CardManager.AllCards.Add(new Card("dragon", "Assets/Resources/Sprites/dragon", 1, 1));
-        CardManager.AllCards.Add(new Card("energy", "Assets/Resources/Sprites/energy", 2, 5));
-        CardManager.AllCards.Add(new Card("kamen", "Assets/Resources/Sprites/kamen", 3, 3));
-        CardManager.AllCards.Add(new Card("krokodil", "Assets/Resources/Sprites/krokodil", 4, 3));
-        CardManager.AllCards.Add(new Card("monster", "Assets/Resources/Sprites/monster", 2, 3));
+        CardManager.AllCards.Add(new Card("granata", "Sprites/granata", 5, 3));
+        CardManager.AllCards.Add(new Card("dragon", "Sprites/dragon", 1, 1));
+        CardManager.AllCards.Add(new Card("energy", "Sprites/energy", 2, 5));
+        CardManager.AllCards.Add(new Card("kamen", "Sprites/kamen", 3, 3));
+        CardManager.AllCards.Add(new Card("krokodil", "Sprites/krokodil", 4, 3));
+        CardManager.AllCards.Add(new Card("monster", "Sprites/monster", 2, 3));
     }
 }
