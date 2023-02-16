@@ -8,27 +8,42 @@ public class CardInfoSrc : MonoBehaviour
 {
     public Card SelfCard;
     public Image Logo;
-    public TextMeshProUGUI Name;
+    public TextMeshProUGUI Name, Attack, Defense;
+    public GameObject HideObj, HighlitedObj;
 
     public void HideCardInfo(Card card)
     {
         SelfCard = card;
-        Logo.sprite = null;
-        Name.text = "";
+        HideObj.SetActive(true);
     }
 
     public void ShowCardInfo(Card card)
     {
+        HideObj.SetActive(false);
         SelfCard = card;
 
         Logo.sprite = card.Logo;
         Logo.preserveAspect = true;
         Name.text = card.Name;
+
+        Attack.text = SelfCard.Attack.ToString();
+        Defense.text = SelfCard.Defense.ToString();
     }
 
-    private void Start()
+    public void RefreshData()
     {
-        //ShowCardInfo(CardManager.AllCards[transform.GetSiblingIndex()]);
+        Attack.text = SelfCard.Attack.ToString();
+        Defense.text = SelfCard.Defense.ToString();
+    }
+
+    public void HighlightCard()
+    {
+        HighlitedObj.SetActive(true);
+    }
+
+    public void DeHighlightCard()
+    {
+        HighlitedObj.SetActive(false);
     }
 
 }

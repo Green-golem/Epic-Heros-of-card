@@ -22,13 +22,19 @@ public class DropPlaceSrc : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
 
         CardMovementSrc card = eventData.pointerDrag.GetComponent<CardMovementSrc>();
 
-        if (card)
+        if (card && card.GameManager.PlayerFieldCards.Count < 6)
+        {
+            card.GameManager.PlayerHandCards.Remove(card.GetComponent<CardInfoSrc>());
+            card.GameManager.PlayerFieldCards.Add(card.GetComponent<CardInfoSrc>());
             card.DefaultParent = transform;
+        }
+            
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (eventData.pointerDrag == null || Type == FieldType.ENEMY_FIELD || Type == FieldType.ENEMY_HAND)
+        if (eventData.pointerDrag == null || Type == FieldType.ENEMY_FIELD || Type == FieldType.ENEMY_HAND ||
+            Type == FieldType.SELF_HAND )
             return;
 
         CardMovementSrc card = eventData.pointerDrag.GetComponent<CardMovementSrc>();
