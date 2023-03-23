@@ -10,15 +10,18 @@ public class CardInfoSrc : MonoBehaviour
     public Image Logo;
     public TextMeshProUGUI Name, Attack, Defense;
     public GameObject HideObj, HighlitedObj;
+    public bool IsPlayer;
 
     public void HideCardInfo(Card card)
     {
         SelfCard = card;
         HideObj.SetActive(true);
+        IsPlayer = false;
     }
 
-    public void ShowCardInfo(Card card)
+    public void ShowCardInfo(Card card, bool isPlayer)
     {
+        IsPlayer = isPlayer;
         HideObj.SetActive(false);
         SelfCard = card;
 

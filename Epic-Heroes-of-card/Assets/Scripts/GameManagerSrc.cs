@@ -86,7 +86,7 @@ public class GameManagerSrc : MonoBehaviour
         }
         else
         {
-            cardGO.GetComponent<CardInfoSrc>().ShowCardInfo(card);
+            cardGO.GetComponent<CardInfoSrc>().ShowCardInfo(card, true);
             PlayerHandCards.Add(cardGO.GetComponent<CardInfoSrc>());
             cardGO.GetComponent<AttakedCard>().enabled = false;
         }
@@ -144,11 +144,25 @@ public class GameManagerSrc : MonoBehaviour
         {
             if (EnemyFieldCards.Count > 5)
                 return;
-            cards[0].ShowCardInfo(cards[0].SelfCard);
+            cards[0].ShowCardInfo(cards[0].SelfCard, false);
             cards[0].transform.SetParent(EnemyField);
 
             EnemyFieldCards.Add(cards[0]);
             EnemyHandCards.Remove(cards[0]);
+        }
+
+        foreach (var activeCard in EnemyFieldCards.FindAll(x => x.SelfCard.CanAttack))
+        {
+            if (PlayerFieldCards.Count == 0)
+                return;
+
+            var enemy = PlayerFieldCards[Random.Range(0, PlayerFieldCards.Count)];
+
+            Debug.Log(activeCard.SelfCard.Name + " (" + activeCard.SelfCard.Defense + "---> " +
+                enemy.SelfCard.Name + " (" + enemy.SelfCard.Attack + ";" + enemy.SelfCard.Defense + ")");
+
+            activeCard.SelfCard.ChangeAttackState(false);
+            CardsFight(enemy, activeCard);
         }
     }
 

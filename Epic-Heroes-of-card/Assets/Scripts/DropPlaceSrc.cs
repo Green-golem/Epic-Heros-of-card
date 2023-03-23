@@ -22,7 +22,9 @@ public class DropPlaceSrc : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
 
         CardMovementSrc card = eventData.pointerDrag.GetComponent<CardMovementSrc>();
 
-        if (card && card.GameManager.PlayerFieldCards.Count < 6)
+        if (card && card.GameManager.PlayerFieldCards.Count < 6 &&
+            card.GameManager.IsPlayerTurn)
+
         {
             card.GameManager.PlayerHandCards.Remove(card.GetComponent<CardInfoSrc>());
             card.GameManager.PlayerFieldCards.Add(card.GetComponent<CardInfoSrc>());
