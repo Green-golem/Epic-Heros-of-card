@@ -23,12 +23,15 @@ public class DropPlaceSrc : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
         CardMovementSrc card = eventData.pointerDrag.GetComponent<CardMovementSrc>();
 
         if (card && card.GameManager.PlayerFieldCards.Count < 6 &&
-            card.GameManager.IsPlayerTurn)
+            card.GameManager.IsPlayerTurn && card.GameManager.PlayerMana >=
+            card.GetComponent<CardInfoSrc>().SelfCard.Manacost)
 
         {
             card.GameManager.PlayerHandCards.Remove(card.GetComponent<CardInfoSrc>());
             card.GameManager.PlayerFieldCards.Add(card.GetComponent<CardInfoSrc>());
             card.DefaultParent = transform;
+
+            card.GameManager.ReduceMana(true, card.GetComponent<CardInfoSrc>().SelfCard.Manacost);
         }
             
     }

@@ -36,6 +36,9 @@ public class GameManagerSrc : MonoBehaviour
     public TextMeshProUGUI TurnTimeTxt;
     public Button EndTurnBtn;
 
+    public int PlayerMana = 10, EnemyMana = 10;
+    public TextMeshProUGUI PlayerManaTxt, EnemyManaTxt;
+
     public List<CardInfoSrc> PlayerHandCards = new List<CardInfoSrc>(),
                              PlayerFieldCards = new List<CardInfoSrc>(),
                              EnemyHandCards = new List<CardInfoSrc>(),
@@ -59,6 +62,8 @@ public class GameManagerSrc : MonoBehaviour
 
         GiveHandCards(CurrentGame.EnemyDeck, EnemyHand);
         GiveHandCards(CurrentGame.PlayerDeck, PlayerHand);
+
+        ShowMana();
 
         StartCoroutine(TurnFunc());
     }
@@ -142,13 +147,21 @@ public class GameManagerSrc : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            if (EnemyFieldCards.Count > 5)
+            if (EnemyFieldCards.Count > 5 || EnemyMana == 0)
                 return;
-            cards[0].ShowCardInfo(cards[0].SelfCard, false);
-            cards[0].transform.SetParent(EnemyField);
 
-            EnemyFieldCards.Add(cards[0]);
-            EnemyHandCards.Remove(cards[0]);
+            List<CardInfoSrc> cardsList = cards.FindAll(x => EnemyMana >= x.SelfCard.Manacost);
+
+            if (cardsList.Count == 0)
+                break;
+
+            ReduceMana(false, cardsList[0].SelfCard.Manacost);
+
+            cardsList[0].ShowCardInfo(cardsList[0].SelfCard, false);
+            cardsList[0].transform.SetParent(EnemyField);
+
+            EnemyFieldCards.Add(cardsList[0]);
+            EnemyHandCards.Remove(cardsList[0]);
         }
 
         foreach (var activeCard in EnemyFieldCards.FindAll(x => x.SelfCard.CanAttack))
@@ -174,7 +187,12 @@ public class GameManagerSrc : MonoBehaviour
         EndTurnBtn.interactable = IsPlayerTurn;
 
         if (IsPlayerTurn)
+        {
             GiveNewCards();
+
+            PlayerMana = EnemyMana = 10;
+            ShowMana();
+        }
 
         StartCoroutine(TurnFunc());
     }
@@ -213,5 +231,23 @@ public class GameManagerSrc : MonoBehaviour
 
         Destroy(card.gameObject);
     }
+
+    void ShowMana()
+    {
+        PlayerManaTxt.text = PlayerMana.ToString();
+        EnemyManaTxt.text = EnemyMana.ToString();
+    }
+
+    public void ReduceMana(bool playerMana, int manacost)
+    {
+        if (playerMana)
+            PlayerMana = Mathf.Clamp(PlayerMana - manacost, 0, int.MaxValue);
+        else
+            EnemyMana = Mathf.Clamp(EnemyMana - manacost, 0, int.MaxValue);
+
+        ShowMana();
+    }
+
+
 
 }

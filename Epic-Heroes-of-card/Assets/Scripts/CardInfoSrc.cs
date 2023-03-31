@@ -8,7 +8,7 @@ public class CardInfoSrc : MonoBehaviour
 {
     public Card SelfCard;
     public Image Logo;
-    public TextMeshProUGUI Name, Attack, Defense;
+    public TextMeshProUGUI Name, Attack, Defense, Manacost;
     public GameObject HideObj, HighlitedObj;
     public bool IsPlayer;
 
@@ -17,6 +17,7 @@ public class CardInfoSrc : MonoBehaviour
         SelfCard = card;
         HideObj.SetActive(true);
         IsPlayer = false;
+        Manacost.text = "";
     }
 
     public void ShowCardInfo(Card card, bool isPlayer)
@@ -29,14 +30,14 @@ public class CardInfoSrc : MonoBehaviour
         Logo.preserveAspect = true;
         Name.text = card.Name;
 
-        Attack.text = SelfCard.Attack.ToString();
-        Defense.text = SelfCard.Defense.ToString();
+        RefreshData();
     }
 
     public void RefreshData()
     {
         Attack.text = SelfCard.Attack.ToString();
         Defense.text = SelfCard.Defense.ToString();
+        Manacost.text = SelfCard.Manacost.ToString();
     }
 
     public void HighlightCard()
