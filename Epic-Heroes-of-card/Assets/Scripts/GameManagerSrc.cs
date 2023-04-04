@@ -39,6 +39,14 @@ public class GameManagerSrc : MonoBehaviour
     public int PlayerMana = 10, EnemyMana = 10;
     public TextMeshProUGUI PlayerManaTxt, EnemyManaTxt;
 
+    public int PlayerHP, EnemyHP;
+    public TextMeshProUGUI PlayerHPTxt, EnemyHPTxt;
+
+    public GameObject ResultGO;
+    public TextMeshProUGUI ResultTxt;
+
+    public AttakedHero EnemyHero;
+
     public List<CardInfoSrc> PlayerHandCards = new List<CardInfoSrc>(),
                              PlayerFieldCards = new List<CardInfoSrc>(),
                              EnemyHandCards = new List<CardInfoSrc>(),
@@ -62,6 +70,10 @@ public class GameManagerSrc : MonoBehaviour
 
         GiveHandCards(CurrentGame.EnemyDeck, EnemyHand);
         GiveHandCards(CurrentGame.PlayerDeck, PlayerHand);
+
+        PlayerHP = EnemyHP = 30;
+
+        ShowHP();
 
         ShowMana();
 
@@ -103,8 +115,11 @@ public class GameManagerSrc : MonoBehaviour
     {
         TurnTime = 30;
         TurnTimeTxt.text = TurnTime.ToString();
+
         foreach (var card in PlayerFieldCards)
             card.DeHighlightCard();
+
+        CheckCardsForAvaliability();
 
         if (IsPlayerTurn)
         {
@@ -120,35 +135,32 @@ public class GameManagerSrc : MonoBehaviour
                 TurnTimeTxt.text = TurnTime.ToString();
                 yield return new WaitForSeconds(1);
             }
+
+            ChangeTurn();
         }
         else
         {
             foreach (var card in EnemyFieldCards)
                 card.SelfCard.ChangeAttackState(true);
 
-            while (TurnTime-- > 27)
-            {
-                TurnTimeTxt.text = TurnTime.ToString();
-                yield return new WaitForSeconds(1);
-            }
-
-            if (EnemyHandCards.Count > 0)
-                EnemyTurn(EnemyHandCards);
+             StartCoroutine(EnemyTurn(EnemyHandCards));
 
         }
-
-        ChangeTurn();
     }
 
-    void EnemyTurn(List<CardInfoSrc> cards)
+    IEnumerator EnemyTurn(List<CardInfoSrc> cards)
     {
+        yield return new WaitForSeconds(1);
+
         int count = cards.Count == 1 ? 1 :
                     Random.Range(0, cards.Count);
 
         for (int i = 0; i < count; i++)
         {
-            if (EnemyFieldCards.Count > 5 || EnemyMana == 0)
-                return;
+            if (EnemyFieldCards.Count > 5 || 
+                EnemyMana == 0 ||
+                EnemyHandCards.Count == 0)
+                break;
 
             List<CardInfoSrc> cardsList = cards.FindAll(x => EnemyMana >= x.SelfCard.Manacost);
 
@@ -166,8 +178,9 @@ public class GameManagerSrc : MonoBehaviour
 
         foreach (var activeCard in EnemyFieldCards.FindAll(x => x.SelfCard.CanAttack))
         {
-            if (PlayerFieldCards.Count == 0)
-                return;
+            if (Random.Range(0, 2) == 0 &&
+                PlayerFieldCards.Count > 0)
+            {
 
             var enemy = PlayerFieldCards[Random.Range(0, PlayerFieldCards.Count)];
 
@@ -176,6 +189,15 @@ public class GameManagerSrc : MonoBehaviour
 
             activeCard.SelfCard.ChangeAttackState(false);
             CardsFight(enemy, activeCard);
+
+            }
+            else
+            {
+                Debug.Log(activeCard.SelfCard.Name + " (" + activeCard.SelfCard.Attack + ") Attacked hero");
+
+                activeCard.SelfCard.ChangeAttackState(false);
+                DamageHero(activeCard, false);
+            }
         }
     }
 
@@ -238,6 +260,12 @@ public class GameManagerSrc : MonoBehaviour
         EnemyManaTxt.text = EnemyMana.ToString();
     }
 
+    void ShowHP()
+    {
+        PlayerHPTxt.text = PlayerHP.ToString();
+        EnemyHPTxt.text = EnemyHP.ToString();
+    }
+
     public void ReduceMana(bool playerMana, int manacost)
     {
         if (playerMana)
@@ -248,6 +276,45 @@ public class GameManagerSrc : MonoBehaviour
         ShowMana();
     }
 
+    public void DamageHero(CardInfoSrc card, bool isEnemyAttacked)
+    {
+        if (isEnemyAttacked)
+            EnemyHP = Mathf.Clamp(EnemyHP - card.SelfCard.Attack, 0, int.MaxValue);
+        else
+            PlayerHP = Mathf.Clamp(PlayerHP - card.SelfCard.Attack, 0, int.MaxValue);
 
+        ShowHP();
+        card.DeHighlightCard();
+        CheckForResult();
+    }
+
+    void CheckForResult()
+    {
+        if (EnemyHP == 0 || PlayerHP == 0)
+        {
+            ResultGO.SetActive(true);
+            StopAllCoroutines();
+
+            if (EnemyHP == 0)
+                ResultTxt.text = "YOU WIN";
+            else
+                ResultTxt.text = "YOU LOSE";
+                
+        }
+    }
+
+    public void CheckCardsForAvaliability()
+    {
+        foreach (var card in PlayerHandCards)
+            card.CheckForAvailability(PlayerMana);
+    }
+
+    public void HighlightTargets(bool highlight)
+    {
+        foreach (var card in EnemyFieldCards)
+            card.HighlightAsTarget(highlight);
+
+        EnemyHero.HighlightAsTarget(highlight); 
+    }
 
 }

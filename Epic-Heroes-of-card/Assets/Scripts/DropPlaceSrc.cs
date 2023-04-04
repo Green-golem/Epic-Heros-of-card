@@ -31,9 +31,10 @@ public class DropPlaceSrc : MonoBehaviour, IDropHandler, IPointerEnterHandler, I
             card.GameManager.PlayerFieldCards.Add(card.GetComponent<CardInfoSrc>());
             card.DefaultParent = transform;
 
+            card.GetComponent<CardInfoSrc>().SelfCard.IsPlaced = true;
             card.GameManager.ReduceMana(true, card.GetComponent<CardInfoSrc>().SelfCard.Manacost);
+            card.GameManager.CheckCardsForAvaliability();
         }
-            
     }
 
     public void OnPointerEnter(PointerEventData eventData)

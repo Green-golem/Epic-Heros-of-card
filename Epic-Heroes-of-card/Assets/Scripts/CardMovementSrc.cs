@@ -25,12 +25,19 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         DefaultParent = DefaultTempCardParent = transform.parent;
 
-        IsDraggable = (DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_HAND ||
-                       DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_FIELD) &&
-                      GameManager.IsPlayerTurn;
-
+        IsDraggable = GameManager.IsPlayerTurn &&
+                      (
+                      (DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_HAND &&
+                       GameManager.PlayerMana >= GetComponent<CardInfoSrc>().SelfCard.Manacost) ||
+                      (DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_FIELD &&
+                       GetComponent<CardInfoSrc>().SelfCard.CanAttack)
+                      );
+            
         if (!IsDraggable)
             return;
+
+        if (GetComponent<CardInfoSrc>().SelfCard.CanAttack)
+            GameManager.HighlightTargets(true);
 
         TempCardGO.transform.SetParent(DefaultParent);
         TempCardGO.transform.SetSiblingIndex(transform.GetSiblingIndex());
@@ -58,6 +65,8 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (!IsDraggable)
             return;
+
+        GameManager.HighlightTargets(false);
 
         transform.SetParent(DefaultParent);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
