@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
@@ -97,6 +99,38 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         TempCardGO.transform.SetSiblingIndex(newIndex);
     }
 
+    public void MoveToField(Transform field)
+    {
+        transform.SetParent(GameObject.Find("Canvas").transform);
+        transform.DOMove(field.position, .5f);
+    }
 
+    public void MoveToTarget(Transform target)
+    {
+        StartCoroutine(MoveToTargetCor(target));
+    }
+
+    IEnumerator MoveToTargetCor(Transform target)
+    {
+        Vector3 pos = transform.position;
+        Transform parent = transform.parent;
+        int index = transform.GetSiblingIndex();
+
+        transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
+
+        transform.SetParent(GameObject.Find("Canvas").transform);
+
+        transform.DOMove(target.position, .25f);
+
+        yield return new WaitForSeconds(.25f);
+
+        transform.DOMove(pos, .25f);
+
+        yield return new WaitForSeconds(.25f);
+
+        transform.SetParent(parent);
+        transform.SetSiblingIndex(index);
+        transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
+    }
 
 }

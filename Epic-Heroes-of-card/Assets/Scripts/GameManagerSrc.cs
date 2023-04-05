@@ -45,7 +45,7 @@ public class GameManagerSrc : MonoBehaviour
     public GameObject ResultGO;
     public TextMeshProUGUI ResultTxt;
 
-    public AttakedHero EnemyHero;
+    public AttakedHero EnemyHero, PlayerHero;
 
     public List<CardInfoSrc> PlayerHandCards = new List<CardInfoSrc>(),
                              PlayerFieldCards = new List<CardInfoSrc>(),
@@ -64,18 +64,47 @@ public class GameManagerSrc : MonoBehaviour
 
     void Start()
     {
+        StartGame();
+    }
+
+    public void RestartGame()
+    {
+        StopAllCoroutines();
+
+        foreach (var card in PlayerHandCards)
+            Destroy(card.gameObject);
+        foreach (var card in PlayerFieldCards)
+            Destroy(card.gameObject);
+        foreach (var card in EnemyHandCards)
+            Destroy(card.gameObject);
+        foreach (var card in EnemyFieldCards)
+            Destroy(card.gameObject);
+
+        PlayerHandCards.Clear();
+        PlayerFieldCards.Clear();
+        EnemyHandCards.Clear();
+        EnemyFieldCards.Clear();
+
+        StartGame();
+    }
+
+    void StartGame()
+    {
         Turn = 0;
+        EndTurnBtn.interactable = true;
 
         CurrentGame = new Game();
 
         GiveHandCards(CurrentGame.EnemyDeck, EnemyHand);
         GiveHandCards(CurrentGame.PlayerDeck, PlayerHand);
 
+        PlayerMana = EnemyMana = 10;
         PlayerHP = EnemyHP = 30;
 
         ShowHP();
-
         ShowMana();
+
+        ResultGO.SetActive(false);
 
         StartCoroutine(TurnFunc());
     }
@@ -167,7 +196,11 @@ public class GameManagerSrc : MonoBehaviour
             if (cardsList.Count == 0)
                 break;
 
+            cardsList[0].GetComponent<CardMovementSrc>().MoveToField(EnemyField);
+
             ReduceMana(false, cardsList[0].SelfCard.Manacost);
+
+            yield return new WaitForSeconds(.51f);
 
             cardsList[0].ShowCardInfo(cardsList[0].SelfCard, false);
             cardsList[0].transform.SetParent(EnemyField);
@@ -176,19 +209,25 @@ public class GameManagerSrc : MonoBehaviour
             EnemyHandCards.Remove(cardsList[0]);
         }
 
+        yield return new WaitForSeconds(.51f);
+
         foreach (var activeCard in EnemyFieldCards.FindAll(x => x.SelfCard.CanAttack))
         {
             if (Random.Range(0, 2) == 0 &&
                 PlayerFieldCards.Count > 0)
             {
 
-            var enemy = PlayerFieldCards[Random.Range(0, PlayerFieldCards.Count)];
+                var enemy = PlayerFieldCards[Random.Range(0, PlayerFieldCards.Count)];
 
-            Debug.Log(activeCard.SelfCard.Name + " (" + activeCard.SelfCard.Defense + "---> " +
-                enemy.SelfCard.Name + " (" + enemy.SelfCard.Attack + ";" + enemy.SelfCard.Defense + ")");
+                Debug.Log(activeCard.SelfCard.Name + " (" + activeCard.SelfCard.Defense + "---> " +
+                    enemy.SelfCard.Name + " (" + enemy.SelfCard.Attack + ";" + enemy.SelfCard.Defense + ")");
 
-            activeCard.SelfCard.ChangeAttackState(false);
-            CardsFight(enemy, activeCard);
+                activeCard.SelfCard.ChangeAttackState(false);
+
+                activeCard.GetComponent<CardMovementSrc>().MoveToTarget(enemy.transform);
+                yield return new WaitForSeconds(.75f);
+
+                CardsFight(enemy, activeCard);
 
             }
             else
@@ -196,9 +235,17 @@ public class GameManagerSrc : MonoBehaviour
                 Debug.Log(activeCard.SelfCard.Name + " (" + activeCard.SelfCard.Attack + ") Attacked hero");
 
                 activeCard.SelfCard.ChangeAttackState(false);
+
+                activeCard.GetComponent<CardMovementSrc>().MoveToTarget(PlayerHero.transform);
+                yield return new WaitForSeconds(.75f);
+
                 DamageHero(activeCard, false);
             }
+
+            yield return new WaitForSeconds(.2f);
         }
+        yield return new WaitForSeconds(1);
+        ChangeTurn();
     }
 
     public void ChangeTurn()
