@@ -82,19 +82,19 @@ public class CardController : MonoBehaviour
 
         switch (spellCard.Spell)
         {
-            case SpellCard.SpellType.HEAL_ALLY_FIELD_CARDS:
+            //case SpellCard.SpellType.HEAL_ALLY_FIELD_CARDS:
 
-                var allyCards = IsPlayerCard ?
-                                gameManager.PlayerFieldCards :
-                                gameManager.EnemyFieldCards;
+            //    var allyCards = IsPlayerCard ?
+            //                    gameManager.PlayerFieldCards :
+            //                    gameManager.EnemyFieldCards;
 
-                foreach (var card in allyCards)
-                {
-                    card.Card.Defense += spellCard.SpellValue;
-                    card.Info.RefreshData();
-                }
+            //    foreach (var card in allyCards)
+            //    {
+            //        card.Card.Defense += spellCard.SpellValue;
+            //        card.Info.RefreshData();
+            //    }
 
-                break;
+            //    break;
 
             case SpellCard.SpellType.DAMAGE_ENEMY_FIELD_CARDS:
 
@@ -118,35 +118,35 @@ public class CardController : MonoBehaviour
 
                 break;
 
-            case SpellCard.SpellType.DAMAGE_ENEMY_HERO:
+            //case SpellCard.SpellType.DAMAGE_ENEMY_HERO:
 
-                if (IsPlayerCard)
-                    gameManager.CurrentGame.Enemy.HP -= spellCard.SpellValue;
-                else
-                    gameManager.CurrentGame.Player.HP -= spellCard.SpellValue;
+            //    if (IsPlayerCard)
+            //        gameManager.CurrentGame.Enemy.HP -= spellCard.SpellValue;
+            //    else
+            //        gameManager.CurrentGame.Player.HP -= spellCard.SpellValue;
 
-                UIController.Instance.UpdateHPAndMana();
-                gameManager.CheckForResult();
+            //    UIController.Instance.UpdateHPAndMana();
+            //    gameManager.CheckForResult();
 
-                break;
+            //    break;
 
-            case SpellCard.SpellType.HEAL_ALLY_CARD:
-                target.Card.Defense += spellCard.SpellValue;
-                break;
+            //case SpellCard.SpellType.HEAL_ALLY_CARD:
+            //    target.Card.Defense += spellCard.SpellValue;
+            //    break;
 
-            case SpellCard.SpellType.DAMAGE_ENEMY_CARD:
-                GiveDamageTo(target, spellCard.SpellValue);
-                break;
+            //case SpellCard.SpellType.DAMAGE_ENEMY_CARD:
+            //    GiveDamageTo(target, spellCard.SpellValue);
+            //    break;
 
             case SpellCard.SpellType.SHIELD_ON_ALLY_CARD:
                 if (!target.Card.Abilities.Exists(x => x == Card.AbilityType.SHIELD))
                     target.Card.Abilities.Add(Card.AbilityType.SHIELD);
                 break;
 
-            case SpellCard.SpellType.PROVOCATION_ON_ALLY_CARD:
-                if (!target.Card.Abilities.Exists(x => x == Card.AbilityType.PROVOCATION))
-                      target.Card.Abilities.Add(Card.AbilityType.PROVOCATION);
-                break;
+            //case SpellCard.SpellType.PROVOCATION_ON_ALLY_CARD:
+            //    if (!target.Card.Abilities.Exists(x => x == Card.AbilityType.PROVOCATION))
+            //          target.Card.Abilities.Add(Card.AbilityType.PROVOCATION);
+            //    break;
 
             case SpellCard.SpellType.BUFF_CARD_DAMAGE:
                 target.Card.Attack += spellCard.SpellValue;

@@ -22,7 +22,7 @@ public class Game
     List<Card> GiveDeckCard()
     {
         List<Card> list = new List<Card>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 60; i++) // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         {
             var card = CardManager.AllCards[Random.Range(0, CardManager.AllCards.Count)];
 
@@ -166,39 +166,58 @@ public class GameManagerSrc : MonoBehaviour
 
         if (IsPlayerTurn)
         {
-            foreach (var card in PlayerFieldCards)
+            if (CurrentGame.PlayerDeck.Count == 0 || CurrentGame.EnemyDeck.Count == 0)
             {
-                card.Card.CanAttack = true;
-                card.Info.HighlightCard(true);
-                card.Ability.OnNewTurn();
+                UIController.Instance.ShowResult();
+                StopAllCoroutines();
             }
+            else
+            {
+                foreach (var card in PlayerFieldCards)
+                {
+                    card.Card.CanAttack = true;
+                    card.Info.HighlightCard(true);
+                    card.Ability.OnNewTurn();
+                }
                 
 
-            while(TurnTime-- > 0)
-            {
-                UIController.Instance.UpdateTurnTime(TurnTime);
-                yield return new WaitForSeconds(1);
+                while(TurnTime-- > 0)
+                {
+                    UIController.Instance.UpdateTurnTime(TurnTime);
+                    yield return new WaitForSeconds(1);
+                }
+
+                ChangeTurn();
             }
 
-            ChangeTurn();
+
+            
         }
         else
         {
-            foreach (var card in EnemyFieldCards)
+            if (CurrentGame.PlayerDeck.Count == 0 || CurrentGame.EnemyDeck.Count == 0)
             {
-                card.Card.CanAttack = true;
-                card.Ability.OnNewTurn();
+                UIController.Instance.ShowResult();
+                StopAllCoroutines();
             }
-
-            EnemyAI.MakeTurn();
-
-            while (TurnTime-- > 0)
+            else
             {
-                UIController.Instance.UpdateTurnTime(TurnTime);
-                yield return new WaitForSeconds(1);
-            }
+                foreach (var card in EnemyFieldCards)
+                {
+                    card.Card.CanAttack = true;
+                    card.Ability.OnNewTurn();
+                }
 
-            ChangeTurn();
+                EnemyAI.MakeTurn();
+
+                while (TurnTime-- > 0)
+                {
+                    UIController.Instance.UpdateTurnTime(TurnTime);
+                    yield return new WaitForSeconds(1);
+                }
+
+                ChangeTurn();
+            }
         }
     }
 
@@ -276,7 +295,6 @@ public class GameManagerSrc : MonoBehaviour
         {
             UIController.Instance.ShowResult();
             StopAllCoroutines();
-            
         }
     }
 
