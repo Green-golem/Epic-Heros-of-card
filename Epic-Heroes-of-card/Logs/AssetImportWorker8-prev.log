@@ -1,0 +1,421 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.11f1 (0a5ca18544bf) revision 679073'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit CoreSingleLanguage' Language: 'ru' Physical Memory: 7102 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+D:\software tools\software engine\Unity\2021.3.11f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker8
+-projectPath
+D:/progect/Epic-Heros-of-card/Epic-Heroes-of-card
+-logFile
+Logs/AssetImportWorker8.log
+-srvPort
+56357
+Successfully changed project path to: D:/progect/Epic-Heros-of-card/Epic-Heroes-of-card
+D:/progect/Epic-Heros-of-card/Epic-Heroes-of-card
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 274.72 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.11f1 (0a5ca18544bf)
+[Subsystems] Discovering subsystems at path D:/software tools/software engine/Unity/2021.3.11f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/progect/Epic-Heros-of-card/Epic-Heroes-of-card/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon R7 Graphics (ID=0x9874)
+    Vendor:   ATI
+    VRAM:     3551 MB
+    Driver:   27.20.20912.1002
+Initialize mono
+Mono path[0] = 'D:/software tools/software engine/Unity/2021.3.11f1/Editor/Data/Managed'
+Mono path[1] = 'D:/software tools/software engine/Unity/2021.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/software tools/software engine/Unity/2021.3.11f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56868
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: D:/software tools/software engine/Unity/2021.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.015251 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 209.39 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.960 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1962ms)
+		BeginReloadAssembly (202ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (3ms)
+		EndReloadAssembly (1361ms)
+			LoadAssemblies (197ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (335ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (85ms)
+			SetupLoadedEditorAssemblies (782ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (25ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (210ms)
+				BeforeProcessingInitializeOnLoad (3ms)
+				ProcessInitializeOnLoadAttributes (399ms)
+				ProcessInitializeOnLoadMethodAttributes (145ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.026563 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\progect\Epic-Heros-of-card\Epic-Heroes-of-card\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\progect\Epic-Heros-of-card\Epic-Heroes-of-card\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 196.88 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in 11.429 seconds
+Domain Reload Profiling:
+	ReloadAssembly (11434ms)
+		BeginReloadAssembly (303ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (18ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (49ms)
+		EndReloadAssembly (10853ms)
+			LoadAssemblies (305ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (1876ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (218ms)
+			SetupLoadedEditorAssemblies (8191ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (10ms)
+				SetLoadedEditorAssemblies (2ms)
+				RefreshPlugins (197ms)
+				BeforeProcessingInitializeOnLoad (217ms)
+				ProcessInitializeOnLoadAttributes (1059ms)
+				ProcessInitializeOnLoadMethodAttributes (6679ms)
+				AfterProcessingInitializeOnLoad (26ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (76ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.82 seconds
+Refreshing native plugins compatible for Editor in 1.93 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4139 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 40 unused Assets / (56.8 KB). Loaded Objects now: 4601.
+Memory consumption went from 155.6 MB to 155.6 MB.
+Total: 9.692900 ms (FindLiveObjects: 0.686900 ms CreateObjectMapping: 0.696600 ms MarkObjects: 8.084800 ms  DeleteObjects: 0.221900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3259.952652 seconds.
+  path: Assets/Prefabs/CardPref.prefab
+  artifactKey: Guid(cb8ca59ed80766045b7ca8d5f5569395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/CardPref.prefab using Guid(cb8ca59ed80766045b7ca8d5f5569395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d16b5a407d7d8c132071fe625f27b28') in 0.372177 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.859350 seconds.
+  path: Assets/Resources/DOTweenSettings.asset
+  artifactKey: Guid(4ca2dd3a66a8fd64f90bfe8a33eda13a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/DOTweenSettings.asset using Guid(4ca2dd3a66a8fd64f90bfe8a33eda13a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21f8aa31bd16e055494fad9cd0a616fa') in 0.026340 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.806825 seconds.
+  path: Assets/Resources/Sprites
+  artifactKey: Guid(3e3680318a25acc4683972e2aac6b69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites using Guid(3e3680318a25acc4683972e2aac6b69f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b91252cfa0ce1578fa73e74ab09e55b') in 0.023277 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.122959 seconds.
+  path: Assets/Resources/Sprites/asasin.png
+  artifactKey: Guid(27d88940cca4a0d41af9cf250d5a5424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/asasin.png using Guid(27d88940cca4a0d41af9cf250d5a5424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c5f6fcd7934685afdd01f8d2f68d9db') in 0.386854 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/Resources/Sprites/charodei.png
+  artifactKey: Guid(c1c60ed36d163ba42a53848bd20443d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/charodei.png using Guid(c1c60ed36d163ba42a53848bd20443d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3ade96383292bf751c39b50c970a2c0') in 0.629816 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000281 seconds.
+  path: Assets/Resources/Sprites/duh.png
+  artifactKey: Guid(8e783ab1b186cd645938724018566463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/duh.png using Guid(8e783ab1b186cd645938724018566463) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '204862b74906f0667b8d67c1070c3f70') in 0.324448 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/Resources/Sprites/duilant.png
+  artifactKey: Guid(422b255ede56dfe4085a1aea6d6f6d0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/duilant.png using Guid(422b255ede56dfe4085a1aea6d6f6d0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46382853d8df4ac38060b416331dbf23') in 0.233452 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/Resources/Sprites/krokodil.png
+  artifactKey: Guid(695b5c2b7ecca3f4fa6baa76a0082565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/krokodil.png using Guid(695b5c2b7ecca3f4fa6baa76a0082565) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de914c30b1709359fa5a3c53ebfa59b4') in 0.111706 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/Resources/Sprites/granata.png
+  artifactKey: Guid(1eaa48bbfeee6cf498884660a5ba231d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/granata.png using Guid(1eaa48bbfeee6cf498884660a5ba231d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25abd5b3d3eaf560251b50939fd52513') in 0.098632 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000055 seconds.
+  path: Assets/Resources/Sprites/kapitan.png
+  artifactKey: Guid(833bdd8e65deee5448850942260fbb82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/kapitan.png using Guid(833bdd8e65deee5448850942260fbb82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee5c3a4e64083a14a006fa7d089bbb63') in 0.189590 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000083 seconds.
+  path: Assets/Resources/Sprites/shaman.png
+  artifactKey: Guid(17a686598b8046d46a250afb75892457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/shaman.png using Guid(17a686598b8046d46a250afb75892457) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '586220643c0ed8e07315099f0eabf432') in 0.189053 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000049 seconds.
+  path: Assets/Resources/Sprites/pirat.png
+  artifactKey: Guid(e33f4e2b060f5e24da1bf8d419440e1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/pirat.png using Guid(e33f4e2b060f5e24da1bf8d419440e1b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34b4295a0542ff726394fe3c0db50335') in 0.214089 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 58.333695 seconds.
+  path: Assets/Resources/Sprites/fon.jpg
+  artifactKey: Guid(7877c02b5c394c74fb02479f6cc7e3fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Sprites/fon.jpg using Guid(7877c02b5c394c74fb02479f6cc7e3fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db5841b71f7613ae50b29c90bbb05ffb') in 0.502035 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.020573 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\progect\Epic-Heros-of-card\Epic-Heroes-of-card\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\progect\Epic-Heros-of-card\Epic-Heroes-of-card\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.97 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  7.639 seconds
+Domain Reload Profiling:
+	ReloadAssembly (7642ms)
+		BeginReloadAssembly (1072ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (59ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (301ms)
+		EndReloadAssembly (5815ms)
+			LoadAssemblies (866ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (1665ms)
+			ReleaseScriptCaches (10ms)
+			RebuildScriptCaches (403ms)
+			SetupLoadedEditorAssemblies (2883ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (79ms)
+				SetLoadedEditorAssemblies (2ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (463ms)
+				ProcessInitializeOnLoadAttributes (2170ms)
+				ProcessInitializeOnLoadMethodAttributes (156ms)
+				AfterProcessingInitializeOnLoad (10ms)
+				EditorAssembliesLoaded (1ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (34ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 8.48 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 4115 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 27 unused Assets / (24.8 KB). Loaded Objects now: 4634.
+Memory consumption went from 158.0 MB to 158.0 MB.
+Total: 9.347600 ms (FindLiveObjects: 0.787700 ms CreateObjectMapping: 0.671400 ms MarkObjects: 7.820100 ms  DeleteObjects: 0.066000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 876.633876 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/01.PSD
+  artifactKey: Guid(d0648185c4839bf42a7c96a855944e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/01.PSD using Guid(d0648185c4839bf42a7c96a855944e2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81542cd5c6c3eb5769b42ec278da6455') in 0.043043 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.046203 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/01.PSD/UIFBRCA_TrollNest_FREE.psd
+  artifactKey: Guid(c8743b49423810a4285c22d2f9cb8d47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/01.PSD/UIFBRCA_TrollNest_FREE.psd using Guid(c8743b49423810a4285c22d2f9cb8d47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5302ad15fc4e56151c3ff84dd2674154') in 0.321495 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.467324 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/All_Elements_2048.png
+  artifactKey: Guid(e8855147999650f4496e8022760ca867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/All_Elements_2048.png using Guid(e8855147999650f4496e8022760ca867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0904697359238cfc5c5898d24f7f6a61') in 0.818863 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-normal.png
+  artifactKey: Guid(b4a21daece1cf8742be134725d7b7c99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-normal.png using Guid(b4a21daece1cf8742be134725d7b7c99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6efd5115798e030a8e0c86a08be3902c') in 0.127145 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000331 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_sword-normal.png
+  artifactKey: Guid(e9d588698d08c4547bafaa8c6141d372) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_sword-normal.png using Guid(e9d588698d08c4547bafaa8c6141d372) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea753d3e05d06e012fdb418f0c9398a1') in 0.069171 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000077 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_play-normal.png
+  artifactKey: Guid(38caf1e648012e349b3aa0de15044fa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_play-normal.png using Guid(38caf1e648012e349b3aa0de15044fa2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63a0f5f34f07a273c3bbd3bedd23b0a7') in 0.096025 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_potion-over.png
+  artifactKey: Guid(1a7203e93c4f97b47808e62dd3fca147) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_potion-over.png using Guid(1a7203e93c4f97b47808e62dd3fca147) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '483806e34c7ccf71a5d1806be62f70a4') in 0.073442 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000134 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_main-btn-over.png
+  artifactKey: Guid(b67842072f237164aac498cf81d511f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_main-btn-over.png using Guid(b67842072f237164aac498cf81d511f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e24234f03912c85d74d93bad6569458f') in 0.109613 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000069 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-over.png
+  artifactKey: Guid(ddfe01a858d18844db9e5702b67efa1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-over.png using Guid(ddfe01a858d18844db9e5702b67efa1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b43e2189e6f01fd0e2de95e31777527') in 0.078758 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000082 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-number-over.png
+  artifactKey: Guid(66ec05384b5362949869cd1b1e5b015c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-number-over.png using Guid(66ec05384b5362949869cd1b1e5b015c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c21109d12b6ca7c9889b5a8674de2bf8') in 0.131941 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000139 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_radiobtn-press.png
+  artifactKey: Guid(2c21aa7c66a1643418c522104261a65d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_radiobtn-press.png using Guid(2c21aa7c66a1643418c522104261a65d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f987494f085f39e3d827ffc7933db23') in 0.066715 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_checkbox-empty.png
+  artifactKey: Guid(eed890db0db29b94bbd03bf1dc1f1b83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_checkbox-empty.png using Guid(eed890db0db29b94bbd03bf1dc1f1b83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '905df8b9719466a94e3cb20e0d023a56') in 0.076333 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000087 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_potion-normal.png
+  artifactKey: Guid(e412664ccf4bdc44ca856aedb75cdb60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_potion-normal.png using Guid(e412664ccf4bdc44ca856aedb75cdb60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63ee2869a73e16dc91a7fe79cba33c78') in 0.074482 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000070 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_main-btn-normal.png
+  artifactKey: Guid(c6a0ff9ab2cb93840a2f1a557bcec250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_main-btn-normal.png using Guid(c6a0ff9ab2cb93840a2f1a557bcec250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2cc6f5b5038017af6a85c602266bc50') in 0.101202 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000067 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-number-normal.png
+  artifactKey: Guid(0c8e23f88da510545b9a5fe7dbdff39e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-btn-number-normal.png using Guid(0c8e23f88da510545b9a5fe7dbdff39e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e5cfbe86ef335a8042ef8521c6b8dff') in 0.105225 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000101 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-normal.png
+  artifactKey: Guid(df2e1f3d288f06d49971e50e7ff54c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_options-normal.png using Guid(df2e1f3d288f06d49971e50e7ff54c2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6622ce364e385c269730df9e3dd938c6') in 0.118451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000084 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_play-over.png
+  artifactKey: Guid(39be3f6801b282f48a2285342f12b1fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/02.PNG/trollnest_play-over.png using Guid(39be3f6801b282f48a2285342f12b1fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8ccfef70e0115669ebd26ed0fef360b') in 0.075584 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 78.656645 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/03.Preview/UIFBRCA_TrollNest_FREE.jpg
+  artifactKey: Guid(c2be65cd40870ab4b92ce0a314c3870a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/03.Preview/UIFBRCA_TrollNest_FREE.jpg using Guid(c2be65cd40870ab4b92ce0a314c3870a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '305b0443cdd0dfd26ea7e80aff634be7') in 0.200868 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.817804 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/04.Tips&Tricks/Change_Color.wmv
+  artifactKey: Guid(5a1a3968b2206ac49b381d380aa59eea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/04.Tips&Tricks/Change_Color.wmv using Guid(5a1a3968b2206ac49b381d380aa59eea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ca2fd9c3d6f3accb7801594eee84413') in 0.206240 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.539617 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/05.FONT/Glue Gun.otf
+  artifactKey: Guid(83b2fa31225dea147813a41568821134) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/05.FONT/Glue Gun.otf using Guid(83b2fa31225dea147813a41568821134) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2b0777acee2ab0f119911213562c428') in 0.124319 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.513873 seconds.
+  path: Assets/[UIFabrica]TrollNest_Free_v01/06.DOCS/README.jpg
+  artifactKey: Guid(6cb4f552c4a1e5348a6c6c127788a837) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/[UIFabrica]TrollNest_Free_v01/06.DOCS/README.jpg using Guid(6cb4f552c4a1e5348a6c6c127788a837) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61ab5e0ee670537a2ab87971a5febd3a') in 0.272672 seconds 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public struct Card
+public class Card
 {
     public enum AbilityType
     {
@@ -16,28 +16,6 @@ public struct Card
         COUNTER_ATTACK
     }
 
-    public enum SpellType 
-    {
-        NO_SPELL,
-        HEAL_ALLY_FIELD_CARDS,
-        DAMAGE_ENEMY_FIELD_CARDS,
-        HEAL_ALLY_HERO,
-        DAMAGE_ENEMY_HERO,
-        HEAL_ALLY_CARD,
-        DAMAGE_ENEMY_CARD,
-        SHIELD_ON_ALLY_CARD,
-        PROVOCATION_ON_ALLY_CARD,     //не реализовывать у нас провокация и так у всех карт сразу есть
-        BUFF_CARD_DAMAGE,
-        DEBUFF_CARD_DAMAGE
-    }
-
-    public enum TargetType
-    {
-        NO_TARGET,
-        ALLY_CARD_TARGET,
-        ENEMY_CARD_TARGET
-    }
-
     public string Name;
     public Sprite Logo;
     public int Attack, Defense, Manacost;
@@ -45,22 +23,14 @@ public struct Card
     public bool IsPlaced;
 
     public List<AbilityType> Abilities;
-    public SpellType Spell;
-    public TargetType SpellTarget;
-    public int SpellValue;
+
+    public bool IsSpell;
 
     public bool IsAlive
     {
         get
         {
             return Defense > 0;
-        }
-    }
-    public bool IsSpell
-    {
-        get
-        {
-            return Spell != SpellType.NO_SPELL;
         }
     }
     public bool HasAbility
@@ -80,9 +50,7 @@ public struct Card
 
     public int TimesDealedDamage;
 
-    public Card(string name, string logoPath, int attack, int defense, int manacost,
-                AbilityType abilityType = 0, SpellType spellType = 0, int spellVal = 0,
-                TargetType targetType = 0)
+    public Card(string name, string logoPath, int attack, int defense, int manacost,AbilityType abilityType=0)
     {
         Name = name;
         Logo = Resources.Load<Sprite>(logoPath);
@@ -97,17 +65,27 @@ public struct Card
         if (abilityType != 0)
             Abilities.Add(abilityType);
 
-        Spell = spellType;
-        SpellTarget = targetType;
-        SpellValue = spellVal;
-
-
         //Abilities.Add(AbilityType.PROVOCATION);//провокация для всех лень делать норм слипил шляпу
         
 
         TimesDealedDamage = 0;
     }
     
+
+    public Card(Card card)
+    {
+        Name = card.Name;
+        Logo = card.Logo;
+        Attack = card.Attack;
+        Defense = card.Defense;
+        Manacost= card.Manacost;
+        CanAttack = false;
+        IsPlaced = false;
+
+        Abilities = new List<AbilityType>(card.Abilities);
+
+        TimesDealedDamage = 0;
+    }
     public void GetDamage(int dmg)
     {
         if (dmg > 0)
@@ -121,9 +99,54 @@ public struct Card
 
     public Card GetCopy()
     {
-        Card card = this;
-        card.Abilities = new List<AbilityType>(Abilities);
-        return card;
+        return new Card(this);
+    }
+}
+public class SpellCard : Card
+{
+    public enum SpellType
+    {
+        NO_SPELL,
+        HEAL_ALLY_FIELD_CARDS,
+        DAMAGE_ENEMY_FIELD_CARDS,
+        HEAL_ALLY_HERO,
+        DAMAGE_ENEMY_HERO,
+        HEAL_ALLY_CARD,
+        DAMAGE_ENEMY_CARD,
+        SHIELD_ON_ALLY_CARD,
+        PROVOCATION_ON_ALLY_CARD,     //не реализовывать у нас провокация и так у всех карт сразу есть
+        BUFF_CARD_DAMAGE,
+        DEBUFF_CARD_DAMAGE
+    }
+    public enum TargetType
+    {
+        NO_TARGET,
+        ALLY_CARD_TARGET,
+        ENEMY_CARD_TARGET
+    }
+    public SpellType Spell;
+    public TargetType SpellTarget;
+    public int SpellValue;
+    public SpellCard(string name, string logoPath, int manacost, SpellType spellType = 0, int spellValue = 0, TargetType targetType= 0) : base(name, logoPath, 0, 0, manacost)
+    {
+        IsSpell = true;
+
+        Spell = spellType;
+        SpellTarget = targetType;
+        SpellValue = spellValue;
+    }
+    public SpellCard(SpellCard card) : base(card)
+    {
+        IsSpell = true;
+
+        Spell = card.Spell;
+        SpellTarget = card.SpellTarget;
+        SpellValue = card.SpellValue;
+    }
+
+    public new SpellCard GetCopy()
+    {
+        return new SpellCard(this);
     }
 }
 
@@ -154,23 +177,23 @@ public class CardManagerSrc : MonoBehaviour
         CardManager.AllCards.Add(new Card("SHEALD", "Sprites/gnom", 2, 2, 2,
             Card.AbilityType.SHIELD));
 
-        CardManager.AllCards.Add(new Card("HealAllFeld", "Sprites/granata", 0, 0, 4, 0,
-            Card.SpellType.HEAL_ALLY_FIELD_CARDS, 2, Card.TargetType.NO_TARGET));
-        CardManager.AllCards.Add(new Card("DamageAllFeld", "Sprites/dragon", 0, 0, 4, 0,
-            Card.SpellType.DAMAGE_ENEMY_FIELD_CARDS, 2, Card.TargetType.NO_TARGET));
-        CardManager.AllCards.Add(new Card("HealHero", "Sprites/energy", 0, 0, 3, 0,
-            Card.SpellType.HEAL_ALLY_HERO, 2, Card.TargetType.NO_TARGET));
-        CardManager.AllCards.Add(new Card("DamageHero", "Sprites/kamen", 0, 0, 3, 0,
-            Card.SpellType.DAMAGE_ENEMY_HERO, 2, Card.TargetType.NO_TARGET));
-        CardManager.AllCards.Add(new Card("HealCard", "Sprites/krokodil", 0, 0, 2, 0,
-            Card.SpellType.HEAL_ALLY_CARD, 2, Card.TargetType.ALLY_CARD_TARGET));
-        CardManager.AllCards.Add(new Card("DamageCard", "Sprites/monster", 0, 0, 2, 0,
-            Card.SpellType.DAMAGE_ENEMY_CARD, 2, Card.TargetType.ENEMY_CARD_TARGET));
-        CardManager.AllCards.Add(new Card("DamageCard", "Sprites/monster", 0, 0, 2, 0,
-            Card.SpellType.SHIELD_ON_ALLY_CARD, 0, Card.TargetType.ALLY_CARD_TARGET));
-        CardManager.AllCards.Add(new Card("BuffDamage", "Sprites/granata", 0, 0, 4, 0,
-            Card.SpellType.BUFF_CARD_DAMAGE, 2, Card.TargetType.ALLY_CARD_TARGET));
-        CardManager.AllCards.Add(new Card("DebuffDamage", "Sprites/dragon", 0, 0, 4, 0,
-            Card.SpellType.DEBUFF_CARD_DAMAGE, 2, Card.TargetType.ENEMY_CARD_TARGET));
+        CardManager.AllCards.Add(new SpellCard("HealAllFeld", "Sprites/granata", 4, 
+            SpellCard.SpellType.HEAL_ALLY_FIELD_CARDS, 2, SpellCard.TargetType.NO_TARGET));
+        CardManager.AllCards.Add(new SpellCard("DamageAllFeld", "Sprites/dragon", 4, 
+            SpellCard.SpellType.DAMAGE_ENEMY_FIELD_CARDS, 2, SpellCard.TargetType.NO_TARGET));
+        CardManager.AllCards.Add(new SpellCard("HealHero", "Sprites/energy", 3,
+            SpellCard.SpellType.HEAL_ALLY_HERO, 2, SpellCard.TargetType.NO_TARGET));
+        CardManager.AllCards.Add(new SpellCard("DamageHero", "Sprites/kamen", 3, 
+            SpellCard.SpellType.DAMAGE_ENEMY_HERO, 2, SpellCard.TargetType.NO_TARGET));
+        CardManager.AllCards.Add(new SpellCard("HealCard", "Sprites/krokodil", 2, 
+            SpellCard.SpellType.HEAL_ALLY_CARD, 2, SpellCard.TargetType.ALLY_CARD_TARGET));
+        CardManager.AllCards.Add(new SpellCard("DamageCard", "Sprites/monster", 2, 
+            SpellCard.SpellType.DAMAGE_ENEMY_CARD, 2, SpellCard.TargetType.ENEMY_CARD_TARGET));
+        CardManager.AllCards.Add(new SpellCard("DamageCard", "Sprites/monster", 2, 
+            SpellCard.SpellType.SHIELD_ON_ALLY_CARD, 0, SpellCard.TargetType.ALLY_CARD_TARGET));
+        CardManager.AllCards.Add(new SpellCard("BuffDamage", "Sprites/granata", 4, 
+            SpellCard.SpellType.BUFF_CARD_DAMAGE, 2, SpellCard.TargetType.ALLY_CARD_TARGET));
+        CardManager.AllCards.Add(new SpellCard("DebuffDamage", "Sprites/dragon", 4, 
+            SpellCard.SpellType.DEBUFF_CARD_DAMAGE, 2, SpellCard.TargetType.ENEMY_CARD_TARGET));
     }
 }

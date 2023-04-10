@@ -27,6 +27,12 @@ public class CardInfoSrc : MonoBehaviour
         Logo.preserveAspect = true;
         Name.text = CC.Card.Name;
 
+        if (CC.Card.IsSpell)
+        {
+            Attack.gameObject.SetActive(false);
+            Defense.gameObject.SetActive(false);
+        }
+
         RefreshData();
     }
 

@@ -31,7 +31,7 @@ public class CardController : MonoBehaviour
 
     public void OnCast()
     {
-        if (Card.IsSpell && Card.SpellTarget != Card.TargetType.NO_TARGET)
+        if (Card.IsSpell && ((SpellCard)Card).SpellTarget != SpellCard.TargetType.NO_TARGET)
             return;
 
         if (IsPlayerCard)
@@ -56,6 +56,8 @@ public class CardController : MonoBehaviour
 
         if (Card.IsSpell)
             UseSpell(null);
+
+        UIController.Instance.UpdateHPAndMana();
     }
     
     public void OnTakeDamage(CardController attacker = null)
@@ -76,9 +78,11 @@ public class CardController : MonoBehaviour
 
     public void UseSpell(CardController target)
     {
-        switch (Card.Spell)
+        var spellCard = (SpellCard)Card;
+
+        switch (spellCard.Spell)
         {
-            case Card.SpellType.HEAL_ALLY_FIELD_CARDS:
+            case SpellCard.SpellType.HEAL_ALLY_FIELD_CARDS:
 
                 var allyCards = IsPlayerCard ?
                                 gameManager.PlayerFieldCards :
@@ -86,70 +90,70 @@ public class CardController : MonoBehaviour
 
                 foreach (var card in allyCards)
                 {
-                    card.Card.Defense += Card.SpellValue;
+                    card.Card.Defense += spellCard.SpellValue;
                     card.Info.RefreshData();
                 }
 
                 break;
 
-            case Card.SpellType.DAMAGE_ENEMY_FIELD_CARDS:
+            case SpellCard.SpellType.DAMAGE_ENEMY_FIELD_CARDS:
 
                 var enemyCards = IsPlayerCard ?
                                  new List<CardController>(gameManager.EnemyFieldCards) :
                                  new List<CardController>(gameManager.PlayerFieldCards);
 
                 foreach (var card in enemyCards)
-                    GiveDamageTo(card, Card.SpellValue);
+                    GiveDamageTo(card, spellCard.SpellValue);
 
                 break;
 
-            case Card.SpellType.HEAL_ALLY_HERO:
+            case SpellCard.SpellType.HEAL_ALLY_HERO:
 
                 if (IsPlayerCard)
-                    gameManager.PlayerHP += Card.SpellValue;
+                    gameManager.CurrentGame.Player.HP += spellCard.SpellValue;
                 else
-                    gameManager.EnemyHP += Card.SpellValue;
+                    gameManager.CurrentGame.Enemy.HP += spellCard.SpellValue;
 
-                gameManager.ShowHP();
+                UIController.Instance.UpdateHPAndMana();
 
                 break;
 
-            case Card.SpellType.DAMAGE_ENEMY_HERO:
+            case SpellCard.SpellType.DAMAGE_ENEMY_HERO:
 
                 if (IsPlayerCard)
-                    gameManager.EnemyHP -= Card.SpellValue;
+                    gameManager.CurrentGame.Enemy.HP -= spellCard.SpellValue;
                 else
-                    gameManager.PlayerHP -= Card.SpellValue;
+                    gameManager.CurrentGame.Player.HP -= spellCard.SpellValue;
 
-                gameManager.ShowHP();
+                UIController.Instance.UpdateHPAndMana();
                 gameManager.CheckForResult();
 
                 break;
 
-            case Card.SpellType.HEAL_ALLY_CARD:
-                target.Card.Defense += Card.SpellValue;
+            case SpellCard.SpellType.HEAL_ALLY_CARD:
+                target.Card.Defense += spellCard.SpellValue;
                 break;
 
-            case Card.SpellType.DAMAGE_ENEMY_CARD:
-                GiveDamageTo(target, Card.SpellValue);
+            case SpellCard.SpellType.DAMAGE_ENEMY_CARD:
+                GiveDamageTo(target, spellCard.SpellValue);
                 break;
 
-            case Card.SpellType.SHIELD_ON_ALLY_CARD:
+            case SpellCard.SpellType.SHIELD_ON_ALLY_CARD:
                 if (!target.Card.Abilities.Exists(x => x == Card.AbilityType.SHIELD))
                     target.Card.Abilities.Add(Card.AbilityType.SHIELD);
                 break;
 
-            case Card.SpellType.PROVOCATION_ON_ALLY_CARD:
+            case SpellCard.SpellType.PROVOCATION_ON_ALLY_CARD:
                 if (!target.Card.Abilities.Exists(x => x == Card.AbilityType.PROVOCATION))
                       target.Card.Abilities.Add(Card.AbilityType.PROVOCATION);
                 break;
 
-            case Card.SpellType.BUFF_CARD_DAMAGE:
-                target.Card.Attack += Card.SpellValue;
+            case SpellCard.SpellType.BUFF_CARD_DAMAGE:
+                target.Card.Attack += spellCard.SpellValue;
                 break;
 
-            case Card.SpellType.DEBUFF_CARD_DAMAGE:
-                target.Card.Attack = Mathf.Clamp(target.Card.Attack - Card.SpellValue, 0, int.MaxValue);
+            case SpellCard.SpellType.DEBUFF_CARD_DAMAGE:
+                target.Card.Attack = Mathf.Clamp(target.Card.Attack - spellCard.SpellValue, 0, int.MaxValue);
                 break;
         }
 

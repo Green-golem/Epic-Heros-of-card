@@ -7,7 +7,7 @@ public class CardAbility : MonoBehaviour
     public CardController CC;
 
     public GameObject Shield,
-                      /*Provacation,*/
+                      Provacation,
                       DoubleAttack,
                       Regeniration,
                       CounterAttack;
@@ -44,9 +44,9 @@ public class CardAbility : MonoBehaviour
                     CounterAttack.SetActive(true);
                     break;
 
-                    /* case Card.AbilityType.PROVOCATION:
-                         Provacation.SetActive(true);      выключил отображение провокации но обьект оставил невидимым
-                         break;*/
+                case Card.AbilityType.PROVOCATION:
+                    Provacation.SetActive(true);/* выключил отображение провокации но обьект оставил невидимым*/
+                         break;
             }
         }
     }

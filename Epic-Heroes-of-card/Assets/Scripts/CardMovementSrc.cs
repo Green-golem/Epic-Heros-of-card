@@ -15,6 +15,8 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     GameObject TempCardGO;
     public bool IsDraggable;
 
+    int startID;
+
     void Awake()
     {
         MainCamera = Camera.allCameras[0];
@@ -30,13 +32,15 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         IsDraggable = GameManagerSrc.Instance.IsPlayerTurn &&
                       (
                       (DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_HAND &&
-                       GameManagerSrc.Instance.PlayerMana >= CC.Card.Manacost) ||
+                       GameManagerSrc.Instance.CurrentGame.Player.Mana >= CC.Card.Manacost) ||
                       (DefaultParent.GetComponent<DropPlaceSrc>().Type == FieldType.SELF_FIELD &&
                        CC.Card.CanAttack)
                       );
             
         if (!IsDraggable)
             return;
+
+        startID = transform.GetSiblingIndex();   
 
         if (CC.Card.IsSpell || CC.Card.CanAttack)
             GameManagerSrc.Instance.HighlightTargets(CC, true);
@@ -100,6 +104,10 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
         }
 
+        
+        if (TempCardGO.transform.parent == DefaultParent)
+            newIndex = startID;//сотри эту часть если хочешь перемещать карты в руке
+
         TempCardGO.transform.SetSiblingIndex(newIndex);
     }
 
@@ -120,7 +128,9 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Transform parent = transform.parent;
         int index = transform.GetSiblingIndex();
 
-        transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
+        if (transform.parent.GetComponent<HorizontalLayoutGroup>())
+            transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = false;
+
 
         transform.SetParent(GameObject.Find("Canvas").transform);
 
@@ -134,7 +144,9 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         transform.SetParent(parent);
         transform.SetSiblingIndex(index);
-        transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
+
+        if (transform.parent.GetComponent<HorizontalLayoutGroup>())
+            transform.parent.GetComponent<HorizontalLayoutGroup>().enabled = true;
     }
 
 }
