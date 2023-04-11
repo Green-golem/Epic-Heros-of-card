@@ -36,8 +36,11 @@ public class AI : MonoBehaviour
             else
             {
                 cardsList[0].GetComponent<CardMovementSrc>().MoveToField(GameManagerSrc.Instance.EnemyField);
+
                 yield return new WaitForSeconds(.51f);
+
                 cardsList[0].transform.SetParent(GameManagerSrc.Instance.EnemyField);
+
                 cardsList[0].OnCast();
             }
             
@@ -67,7 +70,7 @@ public class AI : MonoBehaviour
                 activeCard.Movement.MoveToTarget(enemy.transform);
                 yield return new WaitForSeconds(.75f);
 
-                GameManagerSrc.Instance.CardsFight(enemy, activeCard);
+                GameManagerSrc.Instance.CardsFight(activeCard,enemy);
 
             }
             else

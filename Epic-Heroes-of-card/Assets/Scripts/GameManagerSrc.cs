@@ -99,12 +99,14 @@ public class GameManagerSrc : MonoBehaviour
         StartGame();
     }
 
-    public void ExitGame()
+    public void ExitGame(int scena)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+       
+        SceneManager.LoadScene(scena);
+        
     }
 
-    void StartGame()
+    public void StartGame()
     {
         Turn = 0;
        
