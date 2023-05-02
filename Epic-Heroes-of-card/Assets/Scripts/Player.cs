@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player 
 {
@@ -18,7 +21,7 @@ public class Player
 
     public void IncreaseManapool()
     {
-        Manapool=Mathf.Clamp(Manapool + 1, 0, MAX_MANAPOOL);
+        Manapool =Mathf.Clamp(Manapool + 1, 0, MAX_MANAPOOL);
     }
 
     public void GetDamage(int damage)

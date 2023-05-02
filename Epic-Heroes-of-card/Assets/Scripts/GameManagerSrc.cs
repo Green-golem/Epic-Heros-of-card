@@ -22,6 +22,7 @@ public class Game
     List<Card> GiveDeckCard()
     {
         List<Card> list = new List<Card>();
+        int a = 0, b = 0;
         for (int i = 0; i < 60; i++) // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         {
             var card = CardManager.AllCards[Random.Range(0, CardManager.AllCards.Count)];
@@ -29,7 +30,24 @@ public class Game
             if(card.IsSpell)
                 list.Add(((SpellCard)card).GetCopy());
             else
-                list.Add(card.GetCopy());
+                if(card.Name != "Murat" && card.Name != "Taksist")
+                   list.Add(card.GetCopy());
+                else
+                {
+                    if(a < 1 && card.Name == "Murat")
+                    {
+                        list.Add(card.GetCopy());
+                        a++;
+                    }
+                    else if(b < 1 && card.Name == "Taksist")
+                    {
+                        list.Add(card.GetCopy());
+                        b++;
+                    }
+                }
+                    
+            
+                
         }
             return list;
     }
@@ -38,7 +56,7 @@ public class Game
 
 
 
-public class GameManagerSrc : MonoBehaviour
+public class GameManagerSrc : Sounds
 {
     public static GameManagerSrc Instance;
 
@@ -129,21 +147,17 @@ public class GameManagerSrc : MonoBehaviour
             GiveCardToHand(deck, hand);
     }
 
-    void GiveCardToHand(List<Card> deck, Transform hand)
+    public void GiveCardToHand(List<Card> deck, Transform hand)
     {
         if (deck.Count == 0)
             return;
 
         CreateCardPref(deck[0], hand);
-
-       
-
         
-
         deck.RemoveAt(0);
     }
 
-    void CreateCardPref(Card card, Transform hand)
+    public void CreateCardPref(Card card, Transform hand)
     {
         GameObject cardGO = Instantiate(CardPref, hand, false);
         CardController cardC = cardGO.GetComponent<CardController>();

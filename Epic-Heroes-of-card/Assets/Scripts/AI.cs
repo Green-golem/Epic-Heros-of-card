@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour
+public class AI : Sounds
 {
     public void MakeTurn()
     {
@@ -42,6 +42,15 @@ public class AI : MonoBehaviour
                 cardsList[0].transform.SetParent(GameManagerSrc.Instance.EnemyField);
 
                 cardsList[0].OnCast();
+
+                if(cardsList[0].Card.Name == "Murat")
+                {
+                    PlaySound(sound[0]);
+                }
+                if (cardsList[0].Card.Name == "Taksist")
+                {
+                    PlaySound(sound[1]);
+                }
             }
             
         }
@@ -70,7 +79,7 @@ public class AI : MonoBehaviour
                 activeCard.Movement.MoveToTarget(enemy.transform);
                 yield return new WaitForSeconds(.75f);
 
-                GameManagerSrc.Instance.CardsFight(activeCard,enemy);
+                GameManagerSrc.Instance.CardsFight(enemy, activeCard);
 
             }
             else

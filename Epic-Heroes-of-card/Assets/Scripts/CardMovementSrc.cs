@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class CardMovementSrc : Sounds, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
     public CardController CC;
 
@@ -85,6 +85,14 @@ public class CardMovementSrc : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         TempCardGO.transform.SetParent(GameObject.Find("Canvas").transform);
         TempCardGO.transform.localPosition = new Vector3(2150, 0);
 
+        if (CC.Card.Name == "Murat")
+        {
+            PlaySound(sound[0]);
+        }
+        if (CC.Card.Name == "Taksist")
+        {
+            PlaySound(sound[1]);
+        }
     }
 
     void CheckPosition()

@@ -167,8 +167,8 @@ public class CardManagerSrc : MonoBehaviour
         CardManager.AllCards.Add(new Card("Druid", "Sprites/Druid", 2, 1, 1, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Damn warrior", "Sprites/DamnWarrior", 3, 2, 2, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Warrior", "Sprites/Warrior", 2, 3, 2, Card.AbilityType.NO_ABILITY));
-        CardManager.AllCards.Add(new Card("Murat", "Sprites/murat", 10, 10, 10, Card.AbilityType.NO_ABILITY));
-        CardManager.AllCards.Add(new Card("Taksist", "Sprites/taksist", 10, 10, 10, Card.AbilityType.NO_ABILITY));
+        CardManager.AllCards.Add(new Card("Murat", "Sprites/murat", 10, 10, 5, Card.AbilityType.NO_ABILITY));
+        CardManager.AllCards.Add(new Card("Taksist", "Sprites/taksist", 10, 10, 5, Card.AbilityType.NO_ABILITY));
 
 
         CardManager.AllCards.Add(new Card("King", "Sprites/King", 3, 1, 2,
