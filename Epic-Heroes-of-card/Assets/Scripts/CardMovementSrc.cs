@@ -88,10 +88,12 @@ public class CardMovementSrc : Sounds, IBeginDragHandler, IDragHandler, IEndDrag
         if (CC.Card.Name == "Murat")
         {
             PlaySound(sound[0]);
+            Debug.Log("sounds");
         }
         if (CC.Card.Name == "Taksist")
         {
             PlaySound(sound[1]);
+            Debug.Log("sounds");
         }
     }
 

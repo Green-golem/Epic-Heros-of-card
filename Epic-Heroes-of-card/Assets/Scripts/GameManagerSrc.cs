@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+     
 
 public class Game
 {
+   
     public Player Player, Enemy;
     public List<Card> EnemyDeck, PlayerDeck;
                      
@@ -23,7 +26,7 @@ public class Game
     {
         List<Card> list = new List<Card>();
         int a = 0, b = 0;
-        for (int i = 0; i < 60; i++) // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        for (int i = 0; i < 60; i++) 
         {
             var card = CardManager.AllCards[Random.Range(0, CardManager.AllCards.Count)];
 
@@ -71,11 +74,42 @@ public class GameManagerSrc : Sounds
     public AttakedHero EnemyHero, PlayerHero;
     public AI EnemyAI;
 
+    public bool PauseGame;
+    public GameObject pauseGameMenu;
+
     public List<CardController> PlayerHandCards = new List<CardController>(),
                              PlayerFieldCards = new List<CardController>(),
                              EnemyHandCards = new List<CardController>(),
                              EnemyFieldCards = new List<CardController>();
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseGame)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        pauseGameMenu.SetActive(false);
+        Time.timeScale = 1f;
+        PauseGame = false;
+    }
+
+    public void Pause()
+    {
+        pauseGameMenu.SetActive(true);
+        Time.timeScale = 0f;
+        PauseGame = true;
+    }
 
     public bool IsPlayerTurn
     {
@@ -98,6 +132,7 @@ public class GameManagerSrc : Sounds
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         StopAllCoroutines();
 
         foreach (var card in PlayerHandCards)
@@ -119,7 +154,7 @@ public class GameManagerSrc : Sounds
 
     public void ExitGame(int scena)
     {
-       
+        Time.timeScale = 1f;
         SceneManager.LoadScene(scena);
         
     }
@@ -281,7 +316,6 @@ public class GameManagerSrc : Sounds
         defender.CheckForAlive();
     }
 
-
     public void ReduceMana(bool playerMana, int manacost)
     {
         if (playerMana)
@@ -309,6 +343,7 @@ public class GameManagerSrc : Sounds
     {
         if (CurrentGame.Enemy.HP == 0 || CurrentGame.Player.HP == 0)
         {
+            Time.timeScale = 0f;
             UIController.Instance.ShowResult();
             StopAllCoroutines();
         }

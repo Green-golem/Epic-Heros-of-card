@@ -116,7 +116,6 @@ public class SpellCard : Card
         HEAL_ALLY_CARD,
         DAMAGE_ENEMY_CARD,
         SHIELD_ON_ALLY_CARD,
-        //PROVOCATION_ON_ALLY_CARD,     //не реализовывать у нас провокация и так у всех карт сразу есть
         BUFF_CARD_DAMAGE,
         DEBUFF_CARD_DAMAGE
     }
@@ -129,7 +128,7 @@ public class SpellCard : Card
     public SpellType Spell;
     public TargetType SpellTarget;
     public int SpellValue;
-    public SpellCard(string name, string logoPath, int manacost, SpellType spellType = 0, int spellValue = 0, TargetType targetType= 0) : base(name, logoPath, 0, 0, manacost)
+    public SpellCard(string name, string logoPath, int manacost, SpellType spellType = 0, int spellValue = 0, TargetType targetType = 0) : base(name, logoPath, 0, 0, manacost)
     {
         IsSpell = true;
 
@@ -162,10 +161,10 @@ public class CardManagerSrc : MonoBehaviour
     private void Awake()
     {
         CardManager.AllCards.Add(new Card("Dragon", "Sprites/Dragon", 5, 2, 3, Card.AbilityType.NO_ABILITY));
-        CardManager.AllCards.Add(new Card("AngryHamster", "Sprites/AngryHamster", 1, 2, 1, Card.AbilityType.NO_ABILITY));
+        CardManager.AllCards.Add(new Card("Angry\nHamster", "Sprites/AngryHamster", 1, 2, 1, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Priest", "Sprites/Priest", 2, 5, 3, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Druid", "Sprites/Druid", 2, 1, 1, Card.AbilityType.NO_ABILITY));
-        CardManager.AllCards.Add(new Card("Damn warrior", "Sprites/DamnWarrior", 3, 2, 2, Card.AbilityType.NO_ABILITY));
+        CardManager.AllCards.Add(new Card("Damn\nwarrior", "Sprites/DamnWarrior", 3, 2, 2, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Warrior", "Sprites/Warrior", 2, 3, 2, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Murat", "Sprites/murat", 10, 10, 5, Card.AbilityType.NO_ABILITY));
         CardManager.AllCards.Add(new Card("Taksist", "Sprites/taksist", 10, 10, 5, Card.AbilityType.NO_ABILITY));
@@ -183,24 +182,24 @@ public class CardManagerSrc : MonoBehaviour
             Card.AbilityType.SHIELD));
         CardManager.AllCards.Add(new Card("GhostShip", "Sprites/GhostShip", 2, 5, 4,
             Card.AbilityType.SHIELD));
-        CardManager.AllCards.Add(new Card("StarMagicial", "Sprites/StarMagicial", 2, 2, 3,
+        CardManager.AllCards.Add(new Card("Star\nMagicial", "Sprites/StarMagicial", 2, 2, 3,
             Card.AbilityType.DOUBLE_ATTACK));
         CardManager.AllCards.Add(new Card("Gaslighter", "Sprites/Gaslighter", 1, 2, 3,
             Card.AbilityType.REGENERATION_EACH_TURN));
-        CardManager.AllCards.Add(new Card("DesertKnight", "Sprites/DesertKnight", 1, 2, 3,
+        CardManager.AllCards.Add(new Card("Desert\nKnight", "Sprites/DesertKnight", 1, 2, 3,
             Card.AbilityType.COUNTER_ATTACK));
 
 
 
-        CardManager.AllCards.Add(new SpellCard("DamageAll", "Sprites/Damage", 4, 
+        CardManager.AllCards.Add(new SpellCard("Damage\nAll", "Sprites/Damage", 4, 
             SpellCard.SpellType.DAMAGE_ENEMY_FIELD_CARDS, 2, SpellCard.TargetType.NO_TARGET));
-        CardManager.AllCards.Add(new SpellCard("HealHero", "Sprites/Heal", 3,
+        CardManager.AllCards.Add(new SpellCard("Heal\nHero", "Sprites/Heal", 3,
             SpellCard.SpellType.HEAL_ALLY_HERO, 2, SpellCard.TargetType.NO_TARGET));
         CardManager.AllCards.Add(new SpellCard("Shield", "Sprites/Shield", 2, 
             SpellCard.SpellType.SHIELD_ON_ALLY_CARD, 0, SpellCard.TargetType.ALLY_CARD_TARGET));
-        CardManager.AllCards.Add(new SpellCard("DamageBuff", "Sprites/DamageBuff", 4, 
+        CardManager.AllCards.Add(new SpellCard("Damage\nBuff", "Sprites/DamageBuff", 4, 
             SpellCard.SpellType.BUFF_CARD_DAMAGE, 2, SpellCard.TargetType.ALLY_CARD_TARGET));
-        CardManager.AllCards.Add(new SpellCard("DamageDebuff", "Sprites/DamageDebuff", 4, 
+        CardManager.AllCards.Add(new SpellCard("Damage\nDebuff", "Sprites/DamageDebuff", 4, 
             SpellCard.SpellType.DEBUFF_CARD_DAMAGE, 2, SpellCard.TargetType.ENEMY_CARD_TARGET));
 
 

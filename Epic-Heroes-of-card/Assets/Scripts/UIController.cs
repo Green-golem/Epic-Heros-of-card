@@ -46,7 +46,6 @@ public class UIController : MonoBehaviour
     }
     public void ShowResult()
     {
-
         ResultGo.SetActive(true);
         if (GameManagerSrc.Instance.CurrentGame.Enemy.HP == 0 || GameManagerSrc.Instance.CurrentGame.EnemyDeck.Count == 0)
             ResultTxt.text = "WIN";

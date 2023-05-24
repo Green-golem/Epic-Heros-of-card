@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardController : MonoBehaviour
+public class CardController : Sounds
 {
+
     public Card Card;
 
     public bool IsPlayerCard;
@@ -40,6 +41,9 @@ public class CardController : MonoBehaviour
             gameManager.PlayerFieldCards.Add(this);
             gameManager.ReduceMana(true, Card.Manacost);
             gameManager.CheckCardsForManaAvaliability();
+
+           
+            
         }
         else
         {
@@ -47,6 +51,7 @@ public class CardController : MonoBehaviour
             gameManager.EnemyFieldCards.Add(this);
             gameManager.ReduceMana(false, Card.Manacost);
             Info.ShowCardInfo();
+
         }
 
         Card.IsPlaced = true;

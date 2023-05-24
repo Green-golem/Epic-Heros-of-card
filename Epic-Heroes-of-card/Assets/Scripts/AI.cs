@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class AI : Sounds
 {
+
     public void MakeTurn()
     {
         StartCoroutine(EnemyTurn(GameManagerSrc.Instance.EnemyHandCards));
+        
     }
+
     IEnumerator EnemyTurn(List<CardController> cards)
     {
         yield return new WaitForSeconds(1);
@@ -36,26 +39,16 @@ public class AI : Sounds
             else
             {
                 cardsList[0].GetComponent<CardMovementSrc>().MoveToField(GameManagerSrc.Instance.EnemyField);
-
                 yield return new WaitForSeconds(.51f);
-
                 cardsList[0].transform.SetParent(GameManagerSrc.Instance.EnemyField);
-
                 cardsList[0].OnCast();
 
-                if(cardsList[0].Card.Name == "Murat")
-                {
-                    PlaySound(sound[0]);
-                }
-                if (cardsList[0].Card.Name == "Taksist")
-                {
-                    PlaySound(sound[1]);
-                }
             }
             
         }
 
-        yield return new WaitForSeconds(.51f);
+
+        yield return new WaitForSeconds(1);
 
         while (GameManagerSrc.Instance.EnemyFieldCards.Exists(x => x.Card.CanAttack))
         {
@@ -73,13 +66,13 @@ public class AI : Sounds
                 else
                     enemy = GameManagerSrc.Instance.PlayerFieldCards[Random.Range(0, GameManagerSrc.Instance.PlayerFieldCards.Count)];
 
-                Debug.Log(activeCard.Card.Name + " (" + activeCard.Card.Defense + "---> " +
-                    enemy.Card.Name + " (" + enemy.Card.Attack + ";" + enemy.Card.Defense + ")");
+                Debug.Log(activeCard.Card.Name + " (" + activeCard.Card.Attack + ";" + activeCard.Card.Defense + ") " + "---> " +
+                    enemy.Card.Name + " (" + enemy.Card.Attack + ";" + enemy.Card.Defense + ") ");
 
                 activeCard.Movement.MoveToTarget(enemy.transform);
                 yield return new WaitForSeconds(.75f);
 
-                GameManagerSrc.Instance.CardsFight(enemy, activeCard);
+                GameManagerSrc.Instance.CardsFight(activeCard, enemy);
 
             }
             else
